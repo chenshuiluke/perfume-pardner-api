@@ -1,0 +1,17 @@
+name: perfume-pardner-api
+services:
+  app:
+    build: .
+    command: sh -c "cargo watch -x run -w src --poll"
+    volumes:
+      - ./:/app
+    ports:
+      - 8080:8080
+    working_dir: /app
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: perfume_pardner
