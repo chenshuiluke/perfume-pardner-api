@@ -2,7 +2,7 @@ name: perfume-pardner-api
 services:
   app:
     build: .
-    command: sh -c "cargo watch -x run -w src --poll"
+    command: sh -c "sqlx migrate run && cargo watch -x run -w src --poll"
     volumes:
       - ./:/app
     ports:

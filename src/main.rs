@@ -1,5 +1,7 @@
+mod app;
 mod db;
 use actix_web::{get, web, App, HttpServer, Responder};
+use app::fragrantica_data;
 use dotenv::dotenv;
 
 #[get("/hello/{name}")]
