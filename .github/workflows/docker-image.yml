@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Make sure the code compiles
-      run: docker compose -f docker-compose-build.yml
+      run: docker compose -f docker-compose-build.yml run app
