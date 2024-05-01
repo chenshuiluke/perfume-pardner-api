@@ -17,7 +17,7 @@ pub struct Result {
 pub struct Hit {
     pub naslov: String,
     pub dizajner: String,
-    pub godina: u32,
+    pub godina: i32,
     pub thumbnail: String,
     pub url: HashMap<String, Vec<String>>,
     pub objectID: String,
