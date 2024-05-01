@@ -1,0 +1,27 @@
+name: perfume-pardner-api
+services:
+  app:
+    build: .
+    command: sh -c "sqlx migrate run && cargo build --release"
+    volumes:
+      - ./:/app
+    ports:
+      - 8080:8080
+    working_dir: /app
+    stdin_open: true
+    tty: true  
+    depends_on: 
+      db:
+        condition: service_healthy
+  db:
+    image: postgres
+    restart: always
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: perfume_pardner
+    healthcheck:
+      test: pg_isready -U perfume_pardner
+      interval: 5s
+      timeout: 5s
+      retries: 5
