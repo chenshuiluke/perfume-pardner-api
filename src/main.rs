@@ -17,12 +17,21 @@ struct FragranceDbRecord {
     fragrantica_url: String,
 }
 
+#[derive(Deserialize)]
+struct FragranceSearch {
+    query: String,
+}
+
 #[get("/fragrances")]
-async fn get_fragrances() -> ActixResult<impl Responder> {
+async fn get_fragrances(search: web::Query<FragranceSearch>) -> ActixResult<impl Responder> {
     let pool = db::connection_builder().await.unwrap();
-    let perfume_query = sqlx::query_as!(FragranceDbRecord, "SELECT * FROM perfume")
-        .fetch_all(&pool)
-        .await;
+    let perfume_query = sqlx::query_as!(
+        FragranceDbRecord,
+        "SELECT * FROM perfume WHERE LOWER(name) LIKE $1 OR LOWER(designer) LIKE $1",
+        search.query
+    )
+    .fetch_all(&pool)
+    .await;
     let perfumes = match perfume_query {
         Ok(perfumes) => perfumes,
 
@@ -61,6 +70,7 @@ async fn main() -> std::io::Result<()> {
 async fn load_fragrances_from_json_to_db(pool: PgPool) {
     match fragrantica_data::read_from_file("./output.json") {
         Ok(fragrances) => {
+            sqlx::query!("TRUNCATE perfume").execute(&pool).await;
             for fragrance in fragrances.results[0].hits.iter() {
                 sqlx::query!("INSERT INTO perfume (name, designer, release_year, thumbnail, fragrantica_id, fragrantica_url) VALUES($1, $2, $3, $4, $5, $6)",
                 fragrance.naslov,
