@@ -1,0 +1,12 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "TRUNCATE perfume",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": []
+  },
+  "hash": "6226aa2f6cca0d85e62f05daf5b6eab3ff7714ea77302e054ad2243cf70986ff"
+}
