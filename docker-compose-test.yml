@@ -2,7 +2,7 @@ name: perfume-pardner-api
 services:
   app:
     build: .
-    command: sh -c "sqlx migrate run && cargo build --release"
+    command: sh -c "sqlx migrate run && cargo test -- --nocapture"
     volumes:
       - ./:/app
     ports:

@@ -2,17 +2,15 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master" ]
+    branches: ["master"]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Make sure the code compiles
-      run: docker compose -f docker-compose-build.yml run app
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: docker compose -f docker-compose-test.yml run app

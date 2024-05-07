@@ -1,0 +1,1 @@
+ALTER TABLE perfume RENAME TO fragrance;
