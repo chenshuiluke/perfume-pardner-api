@@ -27,8 +27,12 @@ async fn main() -> std::io::Result<()> {
         }
     };
     app::fragrance::service::load_fragrances_from_json_to_db().await;
-    HttpServer::new(|| App::new().configure(app::fragrance::routes::route_config))
-        .bind(("0.0.0.0", 8080))?
-        .run()
-        .await
+    HttpServer::new(|| {
+        App::new()
+            .configure(app::fragrance::routes::route_config)
+            .configure(app::user::routes::route_config)
+    })
+    .bind(("0.0.0.0", 8080))?
+    .run()
+    .await
 }

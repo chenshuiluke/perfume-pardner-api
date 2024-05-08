@@ -9,7 +9,10 @@ services:
       - 8080:8080
     working_dir: /app
     stdin_open: true
-    tty: true  
+    tty: true 
+    environment:
+      DATABASE_URL: postgresql://perfume_pardner:postgres@db/perfume_pardner
+
     depends_on: 
       db:
         condition: service_healthy

@@ -1,0 +1,58 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT * FROM fragrance WHERE LOWER(name) LIKE $1 OR LOWER(designer) LIKE $1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "name",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "designer",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 3,
+        "name": "release_year",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 4,
+        "name": "thumbnail",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "fragrantica_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 6,
+        "name": "fragrantica_url",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "40a5999ab321897d38b0b7bd0881956674e439116ed40c9add77ce7c40b5d5b8"
+}
