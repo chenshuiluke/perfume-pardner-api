@@ -1,20 +1,25 @@
 {
   "db_name": "PostgreSQL",
-  "query": "SELECT username, email, password FROM user_account WHERE email = $1",
+  "query": "SELECT id, username, email, password FROM user_account WHERE email = $1 LIMIT 1",
   "describe": {
     "columns": [
       {
         "ordinal": 0,
+        "name": "id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
         "name": "username",
         "type_info": "Text"
       },
       {
-        "ordinal": 1,
+        "ordinal": 2,
         "name": "email",
         "type_info": "Text"
       },
       {
-        "ordinal": 2,
+        "ordinal": 3,
         "name": "password",
         "type_info": "Text"
       }
@@ -27,8 +32,9 @@
     "nullable": [
       false,
       false,
+      false,
       false
     ]
   },
-  "hash": "4250bac5bcefd9674baef31b7c2d1186491da7eed20de62ceafbd7062f39da62"
+  "hash": "c831d48fbbcdf9582204434e61eeecabb133db20aed7eb9c5fc999c3fe6acc67"
 }

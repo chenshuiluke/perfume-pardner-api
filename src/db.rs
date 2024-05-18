@@ -9,6 +9,6 @@ pub async fn init_db_pool() -> Result<(), sqlx::Error> {
         .max_connections(5)
         .connect(&url)
         .await?;
-    DB_POOL.set(pool);
+    let _ = DB_POOL.set(pool);
     Ok(())
 }
