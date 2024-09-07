@@ -1,15 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-
+using perfume_pardner_api.Models;
 namespace perfume_pardner_api.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class FragranceController : ControllerBase
 {
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
 
     private readonly ILogger<FragranceController> _logger;
 
@@ -19,9 +15,9 @@ public class FragranceController : ControllerBase
     }
 
     [HttpGet(Name = "GetAllFragrances")]
-    public IEnumerable<Fragrance> Get()
+    public IEnumerable<FragranceDto> Get()
     {
-        return Enumerable.Range(1, 5).Select(index => new Fragrance("Aventus", "Creed", 123, ".", new Dictionary<string, List<string>>() {
+        return Enumerable.Range(1, 5).Select(index => new FragranceDto("Aventus", "Creed", 123, ".", new Dictionary<string, List<string>>() {
 
         }, "1234" ))
         .ToArray();
