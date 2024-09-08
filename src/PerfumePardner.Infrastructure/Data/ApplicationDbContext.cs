@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using perfume_pardner_api.Core.Entities;
 
-namespace PerfumePardner.Infrastructure.Data
+namespace perfume_pardner_api.Infrastructure.Data
 {
     public class ApplicationDbContext : DbContext
     {

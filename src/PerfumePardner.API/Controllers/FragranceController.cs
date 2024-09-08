@@ -1,25 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
 using perfume_pardner_api.Models;
+using perfume_pardner_api.Services;
 namespace perfume_pardner_api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class FragranceController : ControllerBase
 {
-
     private readonly ILogger<FragranceController> _logger;
+    private readonly IFragranceService _fragranceService;
 
-    public FragranceController(ILogger<FragranceController> logger)
+    public FragranceController(ILogger<FragranceController> logger, IFragranceService fragranceService)
     {
         _logger = logger;
+        _fragranceService = fragranceService;
     }
 
     [HttpGet(Name = "GetAllFragrances")]
-    public IEnumerable<FragranceDto> Get()
+    public async Task<ActionResult<IEnumerable<FragranceDto>>> GetAllFragrances()
     {
-        return Enumerable.Range(1, 5).Select(index => new FragranceDto("Aventus", "Creed", 123, ".", new Dictionary<string, List<string>>() {
-
-        }, "1234" ))
-        .ToArray();
+        var fragrances = await _fragranceService.GetAllFragrancesAsync();
+        return Ok(fragrances);
     }
 }

@@ -1,4 +1,10 @@
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using perfume_pardner_api.Services;
+using perfume_pardner_api.Core.Interfaces;
+using perfume_pardner_api.Infrastructure.Data;
+using perfume_pardner_api.Infrastructure.Repositories;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +18,17 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Perfume Pardner API", Version = "v1" });
 });
 
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine($"@@@ Connection string: {connectionString}"); // For deb
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseNpgsql(connectionString));
+
+builder.Services.AddScoped<IFragranceRepository, FragranceRepository>();
+builder.Services.AddScoped<IFragranceService, FragranceService>();
+builder.Services.AddAutoMapper(typeof(Program));
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

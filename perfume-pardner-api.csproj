@@ -11,11 +11,17 @@
 
   <ItemGroup>
    
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+   
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="8.0.0" />
+   
     <PackageReference Include="Newtonsoft.JSON" Version="13.0.3" />
+   
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
    <ItemGroup>
-    <ProjectReference Include="src\PerfumePardner.Infrastructure\PerfumePardner.Infrastructure.csproj"/>
+    <ProjectReference Include="src\PerfumePardner.Infrastructure\PerfumePardner.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
